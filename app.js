@@ -1,6 +1,8 @@
 const express = require('express');
 const path = require('path');
 const { v4 } = require('uuid');
+const mongoose = require('mongoose');
+const Contact = require('./models/contact');
 
 let CONTACTS = [
   { id: v4(), name: "Test", value: "1234567", marked: false}
@@ -42,4 +44,20 @@ app.get('/', (req, res) => {
   res.sendFile('index.html');
 })
 
-app.listen(PORT, () => console.log("Server has been started on port ",PORT));
+async function start() {
+  try {
+    await mongoose.connect(
+      'mongodb+srv://ivnikon:LMAqTZ1veHzsykH1@cluster0.aluv7.mongodb.net/<dbname>?retryWrites=true&w=majority', 
+      {
+        useNewUrlParser: true,
+        useFindAndModify: false,
+        useUnifiedTopology: true 
+      }
+    );
+    app.listen(PORT, () => console.log("Server has been started on port ",PORT));
+  } catch(e) {
+    console.log(e);
+  }
+}
+
+start();
