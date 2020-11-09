@@ -34,8 +34,8 @@
         <div class="card-body">
           <h5 class="card-title" :style="{ color: contact.marked ? 'red' : 'black' }">{{contact.name}}</h5>
           <p class="card-text">{{contact.value}}</p>
-          <button class="btn btn-primary" @click="markContact(contact.id)">{{ contact.marked ? 'Снять': 'Отметить' }}</button>
-          <button class="btn btn-danger" @click="removeContact(contact.id)">Удалить</button>
+          <button class="btn btn-primary" @click="markContact(contact._id)">{{ contact.marked ? 'Снять': 'Отметить' }}</button>
+          <button class="btn btn-danger" @click="removeContact(contact._id)">Удалить</button>
         </div>
       </div>
     </div>
